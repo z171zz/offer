@@ -1,7 +1,0 @@
-# Netlify Redirects
-/admin      /admin.html     200
-/comprar    /checkout.html  200
-/api/*      /.netlify/functions/:splat  200
-
-# Fallback para produtos dinâmicos (Slug)
-/*          /produto.html   200
