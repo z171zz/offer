@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produto | Mercado Livre</title>
+  <link rel="icon" href="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/6.6.73/mercadolibre/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>!function(){document.addEventListener('contextmenu',function(e){e.preventDefault();return!1});document.addEventListener('keydown',function(e){if(e.key==='F12'){e.preventDefault();return!1}if(e.ctrlKey&&e.shiftKey&&'IiJjCc'.indexOf(e.key)>-1){e.preventDefault();return!1}if(e.ctrlKey&&'UuSs'.indexOf(e.key)>-1){e.preventDefault();return!1}});document.addEventListener('selectstart',function(e){if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return!0;e.preventDefault();return!1});document.addEventListener('dragstart',function(e){e.preventDefault();return!1});(function d(){try{(function(){return!1})['constructor']('debugger')['call']()}catch(e){}setTimeout(d,300)})()}();</script>
+</head>
+<body>
+  <header class="ml-header">
+    <div class="header-content">
+      <div class="header-top">
+        <a href="/" class="logo">
+          <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/6.6.73/mercadolibre/logo__large_plus.png" alt="Mercado Livre">
+        </a>
+        <div class="search-box">
+          <input type="text" placeholder="Buscar produtos, marcas e muito mais...">
+          <button><img src="https://cdn-icons-png.flaticon.com/512/54/54481.png" width="16"></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="product-container" id="productPage" style="display:none;">
+    <div class="product-main">
+      <div class="product-gallery">
+        <div class="thumbnails" id="thumbList"></div>
+        <div class="main-image">
+          <img id="mainImg" src="" alt="">
+        </div>
+      </div>
+      
+      <div class="product-details">
+        <div class="breadcrumb">Voltar à lista | Brinquedos e Hobbies > Bonecos e Bonecas > Outros</div>
+        <h1 id="pTitle">Carregando...</h1>
+        <div class="rating">★★★★★ (128)</div>
+        <div class="price-section">
+          <span class="old-price" id="pOldPrice"></span>
+          <div class="current-price">
+            <span class="currency">R$</span>
+            <span class="amount" id="pPrice">00,00</span>
+          </div>
+          <span class="installments">em 10x <span id="pInstallment">0,00</span> sem juros</span>
+        </div>
+        <div class="shipping-info">
+          <p class="free-shipping">Frete grátis</p>
+          <p class="delivery-date">Chegará grátis entre terça-feira e sexta-feira</p>
+        </div>
+        <div class="stock-info">Estoque disponível</div>
+        
+        <div class="buy-actions">
+          <button class="buy-now" onclick="handleBuyNow()">Comprar agora</button>
+          <button class="add-to-cart">Adicionar ao carrinho</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-description">
+      <h2>Descrição</h2>
+      <p id="pDesc"></p>
+    </div>
+
+    <div class="product-features">
+      <h2>Características principais</h2>
+      <div class="features-table" id="featuresTable"></div>
+    </div>
+  </div>
+
+  <div id="loading" style="padding: 100px; text-align: center; font-size: 20px; color: #666;">
+    Carregando produto...
+  </div>
+
+  <script>
+    let currentProduct = null;
+
+    async function loadProduct() {
+      const slug = window.location.pathname.replace('/', '') || new URLSearchParams(window.location.search).get('slug');
+      if (!slug || slug === 'index.html') { window.location.href = '/'; return; }
+
+      try {
+        const res = await fetch(`/.netlify/functions/products?slug=${slug}`);
+        if (!res.ok) throw new Error('Não encontrado');
+        const data = await res.json();
+        currentProduct = data;
+
+        document.title = data.name + ' | Mercado Livre';
+        document.getElementById('pTitle').textContent = data.name;
+        document.getElementById('pPrice').textContent = parseFloat(data.price).toFixed(2).replace('.', ',');
+        document.getElementById('pInstallment').textContent = (data.price / 10).toFixed(2).replace('.', ',');
+        document.getElementById('pDesc').textContent = data.description;
+        
+        const mainImg = document.getElementById('mainImg');
+        mainImg.src = data.images[0];
+        
+        const thumbList = document.getElementById('thumbList');
+        data.images.forEach((img, i) => {
+          const thumb = document.createElement('div');
+          thumb.className = i === 0 ? 'thumb active' : 'thumb';
+          thumb.innerHTML = `<img src="${img}" onclick="changeImg(this, '${img}')">`;
+          thumbList.appendChild(thumb);
+        });
+
+        // Features
+        const table = document.getElementById('featuresTable');
+        const features = data.features || {};
+        Object.entries(features).forEach(([k, v]) => {
+          const row = document.createElement('div');
+          row.style.cssText = "display: flex; border-bottom: 1px solid #eee; padding: 10px;";
+          row.innerHTML = `<span style="width: 200px; font-weight: 600; color: #666;">${k}</span><span>${v}</span>`;
+          table.appendChild(row);
+        });
+
+        document.getElementById('productPage').style.display = 'block';
+        document.getElementById('loading').style.display = 'none';
+
+      } catch (err) {
+        document.getElementById('loading').innerHTML = '<h2>Produto não encontrado</h2><a href="/">Voltar para a Home</a>';
+      }
+    }
+
+    function changeImg(el, src) {
+      document.getElementById('mainImg').src = src;
+      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+      el.parentElement.classList.add('active');
+    }
+
+    function handleBuyNow() {
+      localStorage.setItem('selectedProduct', JSON.stringify({
+        id: currentProduct.id,
+        name: currentProduct.name,
+        price: currentProduct.price,
+        image: currentProduct.images[0]
+      }));
+      window.location.href = '/comprar?ref=a8k2m4';
+    }
+
+    loadProduct();
+  </script>
+</body>
+</html>
