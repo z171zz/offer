@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercado Livre Brasil - Frete Grátis no mesmo dia</title>
+  <link rel="icon" href="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/6.6.73/mercadolibre/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Home Page Specific Styles */
+    .hero-banner {
+      width: 100%;
+      height: 340px;
+      background: linear-gradient(to bottom, #ffe600 0%, #ebebeb 100%);
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-banner img {
+      width: 100%;
+      max-width: 1600px;
+      object-fit: cover;
+    }
+    .benefits-bar {
+      max-width: 1200px;
+      margin: -40px auto 40px;
+      background: #fff;
+      border-radius: 6px;
+      padding: 15px;
+      display: flex;
+      justify-content: space-around;
+      box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+      position: relative;
+      z-index: 2;
+    }
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: #333;
+    }
+    .benefit-item img { width: 32px; }
+    
+    .section-title {
+      max-width: 1200px;
+      margin: 0 auto 20px;
+      font-size: 24px;
+      color: #666;
+      font-weight: 300;
+    }
+    
+    .product-grid {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
+      gap: 16px;
+    }
+    
+    .ml-card {
+      background: #fff;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: box-shadow .2s ease-in-out;
+      border: 1px solid transparent;
+      display: flex;
+      flex-direction: column;
+    }
+    .ml-card:hover {
+      box-shadow: 0 7px 16px 0 rgba(0,0,0,.11);
+    }
+    .ml-card .img-container {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-bottom: 1px solid #eee;
+    }
+    .ml-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .ml-card .info {
+      padding: 12px;
+      flex-grow: 1;
+    }
+    .ml-card .price {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 4px;
+    }
+    .ml-card .installments {
+      font-size: 13px;
+      color: #00a650;
+      margin-bottom: 8px;
+    }
+    .ml-card .shipping {
+      font-size: 13px;
+      color: #00a650;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .ml-card .title {
+      font-size: 14px;
+      color: #333;
+      margin-top: 8px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-banner { height: 180px; }
+      .benefits-bar { margin: 10px; flex-wrap: wrap; gap: 20px; }
+      .section-title { padding-left: 10px; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header ML -->
+  <header class="ml-header">
+    <div class="header-content">
+      <div class="header-top">
+        <a href="/" class="logo">
+          <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/6.6.73/mercadolibre/logo__large_plus.png" alt="Mercado Livre">
+        </a>
+        <div class="search-box">
+          <input type="text" placeholder="Buscar produtos, marcas e muito mais...">
+          <button><img src="https://cdn-icons-png.flaticon.com/512/54/54481.png" width="16"></button>
+        </div>
+        <div class="promo-header">
+          <img src="https://http2.mlstatic.com/D_NQ_931993-MLA74113110005_012024-OO.webp" width="340">
+        </div>
+      </div>
+      <nav class="header-nav">
+        <div class="nav-left">
+          <span class="cep-info"><img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" width="13"> Informe seu CEP</span>
+          <ul class="categories">
+            <li>Categorias</li>
+            <li>Ofertas</li>
+            <li>Histórico</li>
+            <li>Supermercado</li>
+            <li>Moda</li>
+            <li>Vender</li>
+            <li>Ajuda</li>
+          </ul>
+        </div>
+        <div class="nav-right">
+          <span>Crie a sua conta</span>
+          <span>Entre</span>
+          <span>Minhas compras</span>
+          <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" width="18">
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <div class="hero-banner">
+      <img src="https://http2.mlstatic.com/D_NQ_706023-MLA75747685655_042024-OO.webp" alt="Banner">
+    </div>
+
+    <div class="benefits-bar">
+      <div class="benefit-item">
+        <img src="https://http2.mlstatic.com/storage/homes-korriban/assets/images/payments/credit-card.svg" alt="Card">
+        <div>Até 10x sem juros</div>
+      </div>
+      <div class="benefit-item">
+        <img src="https://http2.mlstatic.com/storage/homes-korriban/assets/images/payments/mercado-credits.svg" alt="Pix">
+        <div>Pix e parcelado</div>
+      </div>
+      <div class="benefit-item">
+        <img src="https://http2.mlstatic.com/storage/homes-korriban/assets/images/payments/view-more.svg" alt="More">
+        <div>Mais meios de pagto</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Inspirado no último que você viu</h2>
+    
+    <div class="product-grid" id="productGrid">
+      <!-- Products loaded via JS -->
+      <div class="ml-card skeleton" style="height: 350px; background: #eee;"></div>
+      <div class="ml-card skeleton" style="height: 350px; background: #eee;"></div>
+      <div class="ml-card skeleton" style="height: 350px; background: #eee;"></div>
+      <div class="ml-card skeleton" style="height: 350px; background: #eee;"></div>
+    </div>
+  </main>
+
+  <footer style="background: #fff; padding: 40px 0; border-top: 1px solid #ddd; text-align: center; color: #999; font-size: 13px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <p>Copyright © 1999-2024 Ebazar.com.br LTDA.</p>
+      <p>CNPJ n.º 03.007.331/0001-41 / Av. das Nações Unidas, nº 3.003, Bonfim, Osasco/SP - CEP 06233-903</p>
+    </div>
+  </footer>
+
+  <script>
+    // Load products from API
+    async function loadProducts() {
+      try {
+        const response = await fetch('/.netlify/functions/products');
+        const products = await response.json();
+        
+        const grid = document.getElementById('productGrid');
+        grid.innerHTML = '';
+        
+        products.forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'ml-card';
+          card.onclick = () => window.location.href = `/${p.slug}`;
+          
+          card.innerHTML = `
+            <div class="img-container">
+              <img src="${p.images[0]}" alt="${p.name}">
+            </div>
+            <div class="info">
+              <div class="price">R$ ${parseFloat(p.price).toFixed(2).replace('.', ',')}</div>
+              <div class="installments">10x R$ ${(p.price/10).toFixed(2).replace('.', ',')} sem juros</div>
+              <div class="shipping">Frete grátis <img src="https://http2.mlstatic.com/static/org-img/mkt/full/icon-full.png" width="24"></div>
+              <div class="title">${p.name}</div>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      } catch (err) {
+        console.error('Error loading products:', err);
+      }
+    }
+    loadProducts();
+  </script>
+</body>
+</html>
