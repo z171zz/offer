@@ -1,0 +1,12 @@
+# Netlify _redirects (backup for netlify.toml)
+/admin  /admin.html  200
+/comprar  /checkout.html  200
+/checkout.html  /comprar?ref=a8k2m4  301
+/api/pix  /.netlify/functions/pix  200
+/api/pix.php  /.netlify/functions/pix  200
+/api/webhook  /.netlify/functions/webhook  200
+/api/webhook.php  /.netlify/functions/webhook  200
+/api/products  /.netlify/functions/products  200
+/api/admin  /.netlify/functions/admin_api  200
+/api/ai  /.netlify/functions/ai_generator  200
+/* /produto.html 200
